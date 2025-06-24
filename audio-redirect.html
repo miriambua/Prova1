@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Audio guida</title>
+</head>
+<body style="background-color: #000; display: flex; justify-content: center; align-items: center; height: 100vh;">
+
+  <audio id="audioPlayer" controls style="width: 50%;">
+    <source id="audioSource" src="" type="audio/mpeg">
+    Il tuo browser non supporta l'audio HTML5.
+  </audio>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const lang = navigator.language || navigator.userLanguage;
+    const player = document.getElementById("audioPlayer");
+    const source = document.getElementById("audioSource");
+
+    const url_it = "https://museicapitolini-preprod.comune.roma.it/mcap-div-be/media/audio/2";
+    const url_en = "https://museicapitolini-preprod.comune.roma.it/mcap-div-be/media/audio/3";
+
+    if (lang.startsWith("it")) {
+      source.src = url_it;
+    } else {
+      source.src = url_en;
+    }
+
+    player.load();
+
+    // Prova ad avviare l'audio dopo il caricamento della pagina
+    player.play().catch((err) => {
+      console.warn("Autoplay bloccato dal browser:", err);
+      // Qui potresti mostrare un messaggio o un bottone per far partire manualmente l'audio
+    });
+  });
+</script>
+
+</body>
+</html>
