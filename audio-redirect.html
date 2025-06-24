@@ -6,8 +6,8 @@
 </head>
 <body style="background-color: #000; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; color: white; font-family: sans-serif;">
 
-  <h2>Premi per avviare l'audio</h2>
-  <button onclick="playAudio()" style="padding: 10px 20px; font-size: 18px;">▶️ Avvia Audio</button>
+  <h2 id="instruction">Premi per avviare l'audio</h2>
+  <button id="playBtn" onclick="playAudio()" style="padding: 10px 20px; font-size: 18px;">▶️ Avvia Audio</button>
 
   <audio id="audioPlayer" style="margin-top: 20px; width: 60%;">
     <source id="audioSource" src="" type="audio/mpeg">
@@ -18,21 +18,27 @@
     const lang = navigator.language || navigator.userLanguage;
     const player = document.getElementById("audioPlayer");
     const source = document.getElementById("audioSource");
+    const instruction = document.getElementById("instruction");
+    const playBtn = document.getElementById("playBtn");
 
     const url_it = "https://museicapitolini-preprod.comune.roma.it/mcap-div-be/media/audio/2";
     const url_en = "https://museicapitolini-preprod.comune.roma.it/mcap-div-be/media/audio/3";
 
     if (lang.startsWith("it")) {
       source.src = url_it;
+      instruction.textContent = "Premi per avviare l'audio";
+      playBtn.textContent = "▶️ Avvia Audio";
     } else {
       source.src = url_en;
+      instruction.textContent = "Press to play audio";
+      playBtn.textContent = "▶️ Play Audio";
     }
 
     player.load();
 
     function playAudio() {
       player.play().catch(err => {
-        alert("Errore nel caricamento audio: " + err);
+        alert((lang.startsWith("it") ? "Errore nel caricamento audio: " : "Audio loading error: ") + err);
       });
     }
   </script>
