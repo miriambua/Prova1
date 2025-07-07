@@ -5,7 +5,7 @@
   <title>Redirect audio guida</title>
   <script>
     // Reindirizzamento automatico in base alla lingua
-    const lang = navigator.language || navigator.userLanguage;
+    const userLang = navigator.language || navigator.userLanguage;
     const url_it = "https://museicapitolini-preprod.comune.roma.it/mcap-div-be/media/audio/2";
     const url_en = "https://museicapitolini-preprod.comune.roma.it/mcap-div-be/media/audio/3";
     const redirectUrl = lang.startsWith("it") ? url_it : url_en;
