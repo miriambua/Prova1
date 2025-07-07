@@ -8,8 +8,7 @@
     const userLang = navigator.language || navigator.userLanguage;
     const url_it = "https://museicapitolini-preprod.comune.roma.it/mcap-div-be/media/audio/2";
     const url_en = "https://museicapitolini-preprod.comune.roma.it/mcap-div-be/media/audio/3";
-    const redirectUrl = lang.startsWith("it") ? url_it : url_en;
-
+    const redirectUrl = userLang.startsWith("it") ? url_it : url_en;
     // Reindirizza subito
     window.location.href = redirectUrl;
   </script>
