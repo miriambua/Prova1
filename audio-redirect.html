@@ -1,22 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Redirect audio guida</title>
   <script>
     // Reindirizzamento automatico in base alla lingua
     const userLang = navigator.language || navigator.userLanguage;
+    console.log("Lingua rilevata:", userLang); // Per debug
+    
     const url_it = "https://museicapitolini-preprod.comune.roma.it/mcap-div-be/media/audio/2";
     const url_en = "https://museicapitolini-preprod.comune.roma.it/mcap-div-be/media/audio/3";
-    const redirectUrl = userLang.startsWith("it") ? url_it : url_en;
+    
+    // Controlla se la lingua inizia con "it" (italiano)
+    const redirectUrl = userLang.toLowerCase().startsWith("it") ? url_it : url_en;
+    
+    console.log("Reindirizzando a:", redirectUrl); // Per debug
+    
     // Reindirizza subito
     window.location.href = redirectUrl;
   </script>
 </head>
 <body>
   <!-- Testo visibile solo se JS è disattivato o molto lento -->
-  Stai per essere reindirizzato alla tua audioguida...
-  <br>
-  Se non vieni reindirizzato, <a href="https://museicapitolini-preprod.comune.roma.it/mcap-div-be/media/audio/2">clicca qui</a>.
+  <p>Stai per essere reindirizzato alla tua audioguida...</p>
+  <p>Se non vieni reindirizzato automaticamente, <a href="https://museicapitolini-preprod.comune.roma.it/mcap-div-be/media/audio/2">clicca qui per l'audio in italiano</a>.</p>
 </body>
 </html>
