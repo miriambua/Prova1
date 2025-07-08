@@ -4,21 +4,39 @@
   <meta charset="UTF-8">
   <title>Redirect audio guida</title>
   <script>
-    const lang = navigator.language || navigator.userLanguage;
+    // URL delle audioguide
     const url_it = "https://museicapitolini-preprod.comune.roma.it/mcap-div-be/media/audio/2";
     const url_en = "https://museicapitolini-preprod.comune.roma.it/mcap-div-be/media/audio/3";
-    const redirectUrl = lang.startsWith("it") ? url_it : url_en;
 
-    // *** AGGIUNGI QUESTA LINEA ***
-    alert("Lingua rilevata dall'app QR: " + lang);
+    // Controlla se c'è un parametro ?lang=it o ?lang=en
+    const params = new URLSearchParams(window.location.search);
+    const langParam = params.get("lang");
+
+    let redirectUrl;
+
+    if (langParam === "it") {
+      redirectUrl = url_it;
+    } else if (langParam === "en") {
+      redirectUrl = url_en;
+    } else {
+      // Altrimenti usa la lingua del browser
+      const lang = navigator.language || navigator.userLanguage || "it";
+      console.log("Lingua rilevata:", lang);
+      redirectUrl = lang.startsWith("it") ? url_it : url_en;
+    }
 
     // Reindirizza subito
     window.location.href = redirectUrl;
   </script>
 </head>
 <body>
+  <!-- Testo visibile solo se JS è disattivato o molto lento -->
   Stai per essere reindirizzato alla tua audioguida...
   <br>
-  Se non vieni reindirizzato, <a href="https://museicapitolini-preprod.comune.roma.it/mcap-div-be/media/audio/2">clicca qui</a>.
+  Se non vieni reindirizzato:
+  <ul>
+    <li><a href="https://museicapitolini-preprod.comune.roma.it/mcap-div-be/media/audio/2">Versione Italiana</a></li>
+    <li><a href="https://museicapitolini-preprod.comune.roma.it/mcap-div-be/media/audio/3">English Version</a></li>
+  </ul>
 </body>
 </html>
