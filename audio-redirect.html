@@ -9,8 +9,8 @@
     const url_en = "https://museicapitolini-preprod.comune.roma.it/mcap-div-be/media/audio/3";
     const redirectUrl = lang.startsWith("it") ? url_it : url_en;
 
-    // Aggiungi questo per vedere il valore della lingua rilevata
-    alert("Lingua rilevata: " + lang + ". Reindirizzamento a: " + redirectUrl);
+    // *** AGGIUNGI QUESTA LINEA ***
+    alert("Lingua rilevata dall'app QR: " + lang);
 
     // Reindirizza subito
     window.location.href = redirectUrl;
